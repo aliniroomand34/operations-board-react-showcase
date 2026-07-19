@@ -11,7 +11,7 @@ Desktop-focused static site (mock API only — no secrets, no server).
 
 After the first free deploy, paste the URL here:
 
-**Live demo:** _Add your Vercel or Netlify URL after first deploy_
+**Live demo:**(https://operations-board-react-showcase.vercel.app/)
 
 ## Problem
 
