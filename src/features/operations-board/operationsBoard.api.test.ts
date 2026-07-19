@@ -6,6 +6,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import {
   assignBatchesToRequest,
   completeOperationRequest,
+  getBatchDetail,
   getOperationsBoard,
   resetOperationsBoardMock,
   setOperationsBoardMockDelay,
@@ -60,5 +61,19 @@ describe("operationsBoard.api", () => {
     await expect(
       assignBatchesToRequest("req-001", ["batch-010"]),
     ).rejects.toMatchObject({ code: "BATCH_UNAVAILABLE" });
+  });
+
+  it("returns a single ready batch by id via getBatchDetail", async () => {
+    const batch = await getBatchDetail("batch-001");
+    expect(batch).toMatchObject({
+      id: "batch-001",
+      status: "ready",
+    });
+  });
+
+  it("rejects getBatchDetail for an unknown batch id", async () => {
+    await expect(getBatchDetail("batch-missing")).rejects.toMatchObject({
+      code: "BATCH_NOT_FOUND",
+    });
   });
 });

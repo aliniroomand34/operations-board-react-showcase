@@ -2,17 +2,17 @@
 
 ## Status
 
-Accepted (2026-07-18)
+Accepted (2026-07-18) · Updated (2026-07-19)
 
 ## Context
 
 The public Operations Board slice started as JavaScript (extract + mock API).
-TypeScript is an active learning journey for this showcase — not a claim of
-expert-level TS fluency. We needed a migration path that:
+TypeScript on this showcase is an incremental migration with CI gates — typed
+where reviewers browse first. We needed a migration path that:
 
 1. Types the domain contract first
 2. Moves outward to helpers → API → hook → UI props
-3. Avoids rewriting unrelated legacy JS still on disk
+3. Then expands to the public shell (routes, layout, pages, App, ErrorBoundary)
 
 ## Decision
 
@@ -20,13 +20,16 @@ expert-level TS fluency. We needed a migration path that:
   (`OperationRequest`, `InventoryBatch`, `BoardStatus`, `BoardColumn`,
   `OperationsBoardSnapshot`, validation and async-state helpers).
 - Mock data, API, helpers, hook, page, columns, and modals are `.ts` / `.tsx`.
-- `tsconfig.json` currently typechecks the showcase slice
-  (`operations-board` + `mocks`) under `strict: true` with no intentional `any`.
-- Invite demo pages remain outside this typecheck include until a later pass.
+- Public shell (`routes`, `layouts`, `pages`, `App`, `main`, `ErrorBoundary`)
+  is also `.ts` / `.tsx`.
+- `tsconfig.json` typechecks the entire `src` tree under `strict: true` with no
+  intentional `any`.
+- TypeScript is pinned to 5.8.x so `typescript-eslint` can lint TS/TSX in CI
+  (TypeScript 7’s programmatic API is not yet compatible with that toolchain).
 - Script: `npm run typecheck` (`tsc --noEmit`).
 
 ## Consequences
 
 - Refactors of board status / batch assignment are safer and interview-defendable.
-- Gradual expansion of `tsconfig` include is expected (not big-bang app-wide TS).
-- Resume wording stays honest: TypeScript as learning track, not “expert TS”.
+- CI typecheck covers the same surface recruiters browse — not only the board slice.
+- Resume wording can point at typed contracts and CI typecheck on the public demo.

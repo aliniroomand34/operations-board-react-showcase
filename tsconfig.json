@@ -16,14 +16,11 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     "resolveJsonModule": true,
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": [
-    "src/features/operations-board/**/*",
-    "src/mocks/**/*",
-    "src/vite-env.d.ts"
-  ],
+  "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }

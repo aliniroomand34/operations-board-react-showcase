@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import type { RouteObject } from "react-router-dom";
 import ShowcaseLayout from "@/layouts/ShowcaseLayout";
 import HomePage from "@/pages/HomePage";
 import NotFoundPage from "@/pages/NotFoundPage";
@@ -7,9 +7,9 @@ import OperationsBoardPage from "@/features/operations-board/OperationsBoardPage
 /**
  * Public showcase routes only:
  * `/` landing, `/operations` board demo, `*` not found.
- * No auth guards, admin/god/shop surfaces, or live API routes.
+ * No auth guards, private admin surfaces, or live API routes.
  */
-const router = createBrowserRouter([
+export const showcaseRoutes: RouteObject[] = [
   {
     path: "/",
     element: <ShowcaseLayout />,
@@ -19,6 +19,4 @@ const router = createBrowserRouter([
     ],
   },
   { path: "*", element: <NotFoundPage /> },
-]);
-
-export default router;
+];

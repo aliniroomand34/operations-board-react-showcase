@@ -7,16 +7,30 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies / build
 node_modules
 dist
 dist-ssr
 *.local
+.vite/
+*.tsbuildinfo
 
-# Editor directories and files
+# Local coaching / secrets — not part of the public showcase
+MENTOR_PROGRESS.md
+.env
+.env.*
+!.env.example
+
+# Test / coverage
+coverage
+**/coverage/
+
+# Editor / OS
 .vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj

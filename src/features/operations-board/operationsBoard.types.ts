@@ -65,6 +65,7 @@ export interface PendingDragAssign {
 /**
  * Discriminated union for async board load UI.
  * Prefer narrowing on `status` instead of checking loading/error/board separately.
+ * Hook consolidation onto this shape is deferred — see ADR 005.
  */
 export type BoardAsyncState =
   | { status: "loading" }
@@ -81,16 +82,4 @@ export interface BoardColumnMeta {
 /** Typed error from the mock API boundary (includes machine-readable code). */
 export interface MockApiFailure extends Error {
   code: string;
-}
-
-export function isMockApiFailure(error: unknown): error is MockApiFailure {
-  return (
-    error instanceof Error &&
-    typeof (error as MockApiFailure).code === "string"
-  );
-}
-
-export function getErrorMessage(error: unknown, fallback: string): string {
-  if (error instanceof Error && error.message) return error.message;
-  return fallback;
 }

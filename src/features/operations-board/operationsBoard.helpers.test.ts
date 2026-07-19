@@ -1,8 +1,10 @@
 import { describe, it, expect } from "vitest";
 import {
+  BOARD_COLUMN_META,
   QUEUE_CLIENT_DROP_PREFIX,
   queueClientDropId,
   parseQueueClientDropId,
+  resolvePendingDragAssign,
   formatAmount,
   indexBatchesById,
   resolveBatchesForRequest,
@@ -22,10 +24,46 @@ const batches: InventoryBatch[] = [
 ];
 
 describe("operationsBoard.helpers", () => {
+  it("exposes stable board column metadata for lifecycle columns", () => {
+    expect(BOARD_COLUMN_META.queued.title).toBe("Queued");
+    expect(BOARD_COLUMN_META.inProgress.emptyHint).toMatch(/in-progress/i);
+    expect(BOARD_COLUMN_META.completed.key).toBe("completed");
+  });
+
   it("builds and parses queue droppable ids", () => {
     expect(queueClientDropId("req-001")).toBe(`${QUEUE_CLIENT_DROP_PREFIX}req-001`);
     expect(parseQueueClientDropId(queueClientDropId("req-001"))).toBe("req-001");
     expect(parseQueueClientDropId("other-drop")).toBeNull();
+  });
+
+  it("resolves a valid ready-batch drop onto a queued request", () => {
+    const queued: OperationRequest = {
+      id: "req-001",
+      clientId: "client-001",
+      clientLabel: "Client 001",
+      amount: 1200,
+      status: "queued",
+      requestedAt: "2026-07-18T09:10:00.000Z",
+      batchIds: [],
+    };
+    const pending = resolvePendingDragAssign({
+      dragType: "batch",
+      overId: queueClientDropId("req-001"),
+      batchId: "batch-001",
+      availableBatches: batches,
+      queued: [queued],
+    });
+    expect(pending?.batch.id).toBe("batch-001");
+    expect(pending?.request.id).toBe("req-001");
+    expect(
+      resolvePendingDragAssign({
+        dragType: "batch",
+        overId: queueClientDropId("req-001"),
+        batchId: "batch-010",
+        availableBatches: batches,
+        queued: [queued],
+      }),
+    ).toBeNull();
   });
 
   it("formats amounts safely", () => {
@@ -56,7 +94,10 @@ describe("operationsBoard.helpers", () => {
       "batch-001",
       "batch-002",
     ]);
-    expect(validateBatchAssignment([], batches).ok).toBe(false);
+    expect(validateBatchAssignment([], batches)).toEqual({
+      ok: false,
+      reason: "Select at least one ready batch.",
+    });
     expect(validateBatchAssignment(["batch-010"], batches).ok).toBe(false);
     expect(validateBatchAssignment(["batch-001"], batches)).toEqual({ ok: true });
   });
@@ -66,8 +107,8 @@ describe("operationsBoard.helpers", () => {
       { id: "batch-010", label: "Batch 010", capacity: 900, status: "assigned" },
     ]);
     expect(g).toContain("conic-gradient");
-    expect(g).toContain("148 163 184");
-    expect(g).toContain("234 179 8");
+    expect(g).toContain("68 68 68");
+    expect(g).toContain("255 215 0");
   });
 
   it("builds request detail tiles for the detail modal", () => {
