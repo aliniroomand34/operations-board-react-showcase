@@ -16,6 +16,7 @@ import {
 describe("operationsBoard.api", () => {
   beforeEach(() => {
     setOperationsBoardMockDelay(0);
+    setOperationsBoardMockFailure(false);
     resetOperationsBoardMock("default");
   });
 

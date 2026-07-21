@@ -1,50 +1,65 @@
-# Resume bullets — Operations Board showcase
+# Resume bullets — Ops Console Demo showcase
+
+**Claim level:** Strong Mid+ → Senior-ready learning track — not “Senior expert” or
+“Expert TypeScript.” See [PUBLIC_SURFACE.md](./PUBLIC_SURFACE.md) for glossary and
+boundaries.
 
 ## Primary project bullets (pick 2–3)
 
-- Extracted and anonymized a multi-column operations board from a private SaaS
-  workflow into a public React showcase, preserving modular architecture
-  (UI / Logic / API / helpers) while documenting automation intake, operator
-  extensions, backend orchestration, and capacity signals (multi-source pool,
-  team concurrency, realtime presence) as production context only.
-- Designed a mock API boundary and synthetic dataset so the board demo deploys as
-  a static site with loading, error, empty, and recovery states — no secrets or
-  live backends.
+- Built a multi-route **Ops Console Demo** admin shell (LTR English) with a shared
+  in-memory mock store — Overview KPIs, Inventory Pipeline (allowed catalog + batch
+  request), in-app Extension Acquisition Simulator, Operations Board assign
+  lifecycle, Finance Summary charts, and Team Activity org graph — plus honest
+  stub routes for remaining secondary IA.
+- Extracted and anonymized operator workflows from a private SaaS product into a
+  public React showcase, preserving modular architecture (UI / Logic / API /
+  helpers) while documenting automation intake, operator extensions, backend
+  orchestration, and capacity signals as **production context only** — not live in
+  this static demo.
+- Designed a mock API / shared-store boundary and synthetic dataset so the console
+  deploys as a static site with loading, error, empty, and recovery states — no
+  secrets or live backends.
 - Migrated the public demo surface to TypeScript (strict domain contracts,
-  helpers, orchestration hook, and UI props) with CI typecheck.
-- Added Vitest coverage for pure domain helpers and mock transitions, plus React
-  Testing Library behavior tests for board workflows (assign, assign-more, cancel,
-  complete, route shell, ErrorBoundary) gated in CI.
-- Wrote ADRs that separate private system context (Redis / realtime / workflow
-  services) from what this repository implements.
+  helpers, orchestration hooks, and UI props) with CI typecheck on the showcase
+  slice — framed as an active learning journey, not exhaustive TS mastery.
+- Added Vitest coverage for pure domain helpers and store mutations, plus React
+  Testing Library behavior tests for Pipeline, Extension Simulator, Board
+  workflows, Overview KPIs, Finance/Team selectors and pages, and route shell —
+  gated in CI (`npm run ci`). DnD pointer physics stays manual demo scope.
+- Wrote ADRs and a publishable glossary that separate private system context
+  (Redis / realtime / workflow services) from what this repository implements.
 
 ## One-liner summary (About / LinkedIn)
 
-Anonymized operations board from private SaaS work — modular React architecture,
-mock API boundary, TypeScript + tests under CI; larger workflow (intake,
-extensions, backend, realtime) documented as context only.
+Anonymized Ops Console Demo from private SaaS work — multi-surface admin shell,
+shared mock store, modular React architecture, TypeScript + behavior tests under
+CI; larger workflow (intake, extensions, backend, realtime) documented as
+**context only**.
 
 ## Skills phrasing
 
 | Prefer | Scope note |
 | --- | --- |
-| React 19, Vite, modular feature architecture | Board slice, not a full platform rewrite |
-| TypeScript on a production-shaped slice | Strict contracts + CI typecheck on the public demo |
-| Vitest + RTL for helpers and board behavior | Behavior coverage; DnD pointer physics is manual demo |
-| Desktop-focused operations UI (drag/drop + keyboard assign) | Matches private operator posture |
+| React 19, Vite, Tailwind 4, modular feature architecture | Multi-route admin demo + board/pipeline workflows |
+| TypeScript on a production-shaped slice | Strict contracts + CI typecheck — learning journey, not expert claim |
+| Vitest + RTL for helpers, store, and operator workflows | Behavior coverage; DnD pointer physics is manual demo |
+| Desktop-focused operations UI (drag/drop + keyboard assign) | Desktop-first only — no responsive portfolio claim |
 | Clear ownership of architecture boundaries under AI-assisted drafting | Boundaries and scope cuts stay human decisions |
-| Redis / realtime / backend as documented private context | Not claimed as live in this static demo |
+| Redis / realtime / backend as documented private context | **Not** claimed as live in this static demo |
 
 ## Interview anchor (30 seconds)
 
-> I extracted one high-signal board workflow from a private product, renamed the
-> domain for public safety, and kept the separation of UI, orchestration, pure
-> helpers, and an API boundary. The private system also had automation intake,
-> operator extensions, and Redis / realtime coordination — those stay documented
-> context. The public demo uses a mock API so it deploys statically. TypeScript
-> and tests cover the slice reviewers browse, and every boundary is defendable.
+> I built a public Ops Console Demo from private operator workflows: admin shell,
+> shared mock store, Inventory Pipeline into an Extension Acquisition Simulator,
+> then Operations Board assign/complete. Domain language follows a public glossary
+> (operation request, client, inventory batch). UI, orchestration, pure helpers,
+> and an API-shaped mock boundary stay separated. Redis / realtime / live
+> extensions are **documented context**. TypeScript and tests cover the surfaces
+> reviewers browse, and every claim is defendable as Mid+ → Senior-ready — not
+> expert.
 
 ## Full walkthrough
 
 - Timed live demo: [RECRUITER_DEMO_SCRIPT.md](./RECRUITER_DEMO_SCRIPT.md)
 - Architecture FAQ: [INTERVIEW_DEFENSE.md](./INTERVIEW_DEFENSE.md)
+- Anonymization glossary: [PUBLIC_SURFACE.md](./PUBLIC_SURFACE.md)

@@ -2,51 +2,52 @@ import { Link } from "react-router-dom";
 import {
   IMPLEMENTATION,
   SCALE_SIGNALS,
+  SHIPPED_SURFACES,
   SYSTEM_CONTEXT,
 } from "@/pages/homePage.content";
 import HomeWorkflowCycles from "@/pages/HomeWorkflowCycles";
+import { ADMIN_DEMO_BASE } from "@/layouts/adminDemoNav";
 
-function HomeHero() {
+function CaseStudyHero() {
   return (
     <section
       className="ops-panel ops-hero max-w-4xl rounded-2xl p-6 sm:p-8"
-      aria-labelledby="home-hero-heading"
+      aria-labelledby="case-study-heading"
     >
       <div className="relative z-10">
         <div className="ops-workflow-strip" aria-label="Demo traits">
-          <span className="ops-status-badge">Public portfolio demo</span>
+          <span className="ops-status-badge">Case study</span>
           <span className="ops-status-badge ops-status-badge--progress">
-            Desktop-first
+            Architecture honesty
           </span>
           <span className="ops-status-badge ops-status-badge--done">
             Mock API only
           </span>
         </div>
         <h1
-          id="home-hero-heading"
+          id="case-study-heading"
           className="ops-gold-text mt-3 text-4xl font-semibold tracking-tight sm:text-5xl"
         >
-          Operations Board
+          Ops Console Demo
         </h1>
         <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--fg-muted)]">
-          Anonymized operations workflow showcase
+          Anonymized operations admin — architecture notes
         </p>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-[var(--gray-800)]">
-          Safe frontend projection of a larger private workflow system. Domain
-          language and live APIs were removed; what remains is the operator board
-          experience — modular architecture, typed domain contracts, a mock API
-          boundary, and behavior tests under CI.
+          The interactive product lives on Overview, Inventory Pipeline, Extension
+          Simulator, and Operations Board. This page documents boundaries, private
+          production context, and what the public repo actually ships.
         </p>
 
         <div className="ops-action-bar mt-6">
           <Link
-            to="/operations"
+            to={`${ADMIN_DEMO_BASE}/overview`}
             className="ops-btn ops-btn-primary px-5 py-2.5 text-sm"
           >
-            Open Operations Board
+            Open Overview
           </Link>
           <span className="text-xs text-[var(--gray-800)]">
-            Queue → assign → progress → complete
+            Start the live demo — not this essay
           </span>
         </div>
       </div>
@@ -54,22 +55,56 @@ function HomeHero() {
   );
 }
 
+function ShippedSurfacesSection() {
+  return (
+    <section aria-labelledby="shipped-surfaces-heading">
+      <header className="mb-3">
+        <p className="ops-context-kicker">Interactive mocks</p>
+        <h2
+          id="shipped-surfaces-heading"
+          className="text-lg font-semibold text-[var(--fg)]"
+        >
+          What runs in this repository
+        </h2>
+      </header>
+      <ul className="grid gap-3 sm:grid-cols-2">
+        {SHIPPED_SURFACES.map((surface) => (
+          <li key={surface.route} className="ops-context-card ops-context-card--impl">
+            <div className="ops-workflow-strip mb-2">
+              <span className="ops-status-badge ops-status-badge--done">Demo</span>
+            </div>
+            <h3 className="text-sm font-semibold text-[var(--fg-info)]">
+              {surface.title}
+            </h3>
+            <p className="mt-1 text-xs leading-relaxed text-[var(--gray-800)]">
+              {surface.body}
+            </p>
+            <Link
+              to={surface.route}
+              className="ops-btn ops-btn-secondary mt-3 inline-flex px-3 py-1.5 text-xs"
+            >
+              Open {surface.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 function SystemContextSection() {
   return (
     <section aria-labelledby="system-context-heading">
-      <header className="mb-3 flex flex-wrap items-end justify-between gap-2">
-        <div>
-          <p className="ops-context-kicker">System context</p>
-          <h2
-            id="system-context-heading"
-            className="text-lg font-semibold text-[var(--fg)]"
-          >
-            Larger private workflow (documented only)
-          </h2>
-        </div>
-        <p className="max-w-md text-xs leading-relaxed text-[var(--gray-800)]">
-          These layers existed in the source system. This public repo does not
-          run them — it projects the board UI over a mock boundary.
+      <header className="mb-3">
+        <h2
+          id="system-context-heading"
+          className="text-lg font-semibold text-[var(--fg)]"
+        >
+          Private workflow layers
+        </h2>
+        <p className="mt-1 max-w-2xl text-xs leading-relaxed text-[var(--gray-800)]">
+          Category-level context from the source system — not implemented live in
+          this static demo.
         </p>
       </header>
       <ul className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
@@ -92,21 +127,13 @@ function SystemContextSection() {
 function ScaleSignalsSection() {
   return (
     <section aria-labelledby="scale-signals-heading">
-      <header className="mb-3 flex flex-wrap items-end justify-between gap-2">
-        <div>
-          <p className="ops-context-kicker">Scale signals</p>
-          <h2
-            id="scale-signals-heading"
-            className="text-lg font-semibold text-[var(--fg)]"
-          >
-            Private system volume &amp; ops capabilities
-          </h2>
-        </div>
-        <p className="max-w-md text-xs leading-relaxed text-[var(--gray-800)]">
-          Why the board mattered: the private product was multi-operator,
-          multi-source, and realtime. Numbers below are architecture context —
-          this demo still runs a mock API only.
-        </p>
+      <header className="mb-3">
+        <h2
+          id="scale-signals-heading"
+          className="text-lg font-semibold text-[var(--fg)]"
+        >
+          Private system volume &amp; ops capabilities
+        </h2>
       </header>
       <ul className="mb-3 flex flex-wrap gap-2" aria-label="Capacity highlights">
         <li className="ops-status-badge ops-status-badge--progress">
@@ -145,12 +172,12 @@ function PublicDemoSection() {
   return (
     <section aria-labelledby="public-demo-heading">
       <header className="mb-3">
-        <p className="ops-context-kicker">Public demo</p>
+        <p className="ops-context-kicker">Engineering proof</p>
         <h2
           id="public-demo-heading"
           className="text-lg font-semibold text-[var(--fg)]"
         >
-          What this repository actually implements
+          Architecture boundaries under CI
         </h2>
       </header>
       <ul className="grid gap-3 sm:grid-cols-3">
@@ -183,8 +210,10 @@ function ScopeSection() {
             </span>
           </div>
           <p className="leading-relaxed">
-            Board UI, drag/drop assign, mock API boundary, testable domain
-            helpers, desktop demo polish, CI quality gates.
+            Admin shell, shared mock store, interactive workflows (Overview,
+            Pipeline, Extension Simulator, Board, Finance, Team), honest stub
+            routes, modular UI / Logic / API / helpers, behavior tests, desktop
+            demo polish.
           </p>
         </li>
         <li className="ops-panel rounded-xl p-4">
@@ -194,10 +223,9 @@ function ScopeSection() {
             </span>
           </div>
           <p className="leading-relaxed">
-            Real auth, private admin surfaces, live endpoints, production PII,
-            live resource pools / RBAC / WebSocket servers, or claims that this
-            demo runs Redis backends. Scale signals on Home are documented
-            context only.
+            Real auth, live endpoints, production PII, Redis / WebSocket servers,
+            real browser extensions, or claims that private pool / settlement UI
+            runs here. Production context below is documented only.
           </p>
         </li>
       </ul>
@@ -206,17 +234,27 @@ function ScopeSection() {
 }
 
 /**
- * Showcase landing — product-style case study for recruiters / reviewers.
+ * Slim case study route — architecture honesty, not the first recruiter impression.
  */
 export default function HomePage() {
   return (
     <div className="flex flex-col gap-7">
-      <HomeHero />
-      <SystemContextSection />
-      <HomeWorkflowCycles />
-      <ScaleSignalsSection />
+      <CaseStudyHero />
+      <ShippedSurfacesSection />
+      <HomeWorkflowCycles tone="demo" />
       <PublicDemoSection />
       <ScopeSection />
+
+      <details className="ops-panel rounded-2xl p-5 sm:p-6">
+        <summary className="cursor-pointer text-sm font-semibold text-[var(--fg)]">
+          Production context (private system — not live in this demo)
+        </summary>
+        <div className="mt-5 flex flex-col gap-7">
+          <SystemContextSection />
+          <HomeWorkflowCycles tone="context" />
+          <ScaleSignalsSection />
+        </div>
+      </details>
     </div>
   );
 }

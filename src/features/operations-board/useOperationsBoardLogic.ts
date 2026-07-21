@@ -35,6 +35,7 @@ export interface UseOperationsBoardLogicResult
   loadBoard: () => Promise<void>;
   handleRetry: () => void;
   handleShowEmpty: () => Promise<void>;
+  handleShowErrorPreset: () => Promise<void>;
   handleResetDemo: () => Promise<void>;
   handleSimulateError: () => Promise<void>;
   batchesForRequest: (request: OperationRequest | null | undefined) => InventoryBatch[];

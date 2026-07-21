@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 /**
- * Standalone 404 — outside ShowcaseLayout, so it owns its own document region.
+ * Standalone 404 — outside AdminDemoLayout, so it owns its own document region.
  */
 export default function NotFoundPage() {
   return (
@@ -17,16 +17,17 @@ export default function NotFoundPage() {
           Page not found
         </h1>
         <p className="text-sm text-[var(--gray-800)]">
-          This showcase only exposes Home and the Operations Board.
+          This showcase exposes the admin demo shell, interactive workflows, and
+          honest stub routes under /app.
         </p>
         <nav
           className="flex flex-wrap justify-center gap-3 pt-2"
           aria-label="Available pages"
         >
-          <Link to="/" className="ops-btn ops-btn-primary px-4 py-2 text-sm">
-            Home
+          <Link to="/app/overview" className="ops-btn ops-btn-primary px-4 py-2 text-sm">
+            Overview
           </Link>
-          <Link to="/operations" className="ops-btn px-4 py-2 text-sm">
+          <Link to="/app/operations" className="ops-btn px-4 py-2 text-sm">
             Operations Board
           </Link>
         </nav>

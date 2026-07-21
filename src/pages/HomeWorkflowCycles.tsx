@@ -1,4 +1,7 @@
-import { WORKFLOW_CYCLES } from "@/pages/homePage.content";
+import {
+  WORKFLOW_CYCLES,
+  type WorkflowCycleTone,
+} from "@/pages/homePage.content";
 
 function CycleGraph({
   nodes,
@@ -29,30 +32,54 @@ function CycleGraph({
   );
 }
 
+interface HomeWorkflowCyclesProps {
+  /** When set, show only demo or context cycles (case study uses both separately). */
+  tone?: WorkflowCycleTone;
+}
+
 /**
  * Visual workflow cycles — board (demo) + private-system context graphs.
  */
-export default function HomeWorkflowCycles() {
+export default function HomeWorkflowCycles({ tone }: HomeWorkflowCyclesProps) {
+  const cycles = tone
+    ? WORKFLOW_CYCLES.filter((cycle) => cycle.tone === tone)
+    : WORKFLOW_CYCLES;
+
+  if (cycles.length === 0) return null;
+
+  const headingId =
+    tone === "demo"
+      ? "workflow-cycles-demo-heading"
+      : tone === "context"
+        ? "workflow-cycles-context-heading"
+        : "workflow-cycles-heading";
+
   return (
-    <section aria-labelledby="workflow-cycles-heading">
+    <section aria-labelledby={headingId}>
       <header className="mb-3 flex flex-wrap items-end justify-between gap-2">
         <div>
           <p className="ops-context-kicker">Workflow cycles</p>
           <h2
-            id="workflow-cycles-heading"
+            id={headingId}
             className="text-lg font-semibold text-[var(--fg)]"
           >
-            How work moved through the system
+            {tone === "demo"
+              ? "Board lifecycle — runs in this demo"
+              : tone === "context"
+                ? "Private production cycles — context only"
+                : "How work moved through the system"}
           </h2>
         </div>
-        <p className="max-w-md text-xs leading-relaxed text-[var(--gray-800)]">
-          One cycle runs in this demo; the rest are private production context
-          only.
-        </p>
+        {!tone ? (
+          <p className="max-w-md text-xs leading-relaxed text-[var(--gray-800)]">
+            One cycle runs in this demo; the rest are private production context
+            only.
+          </p>
+        ) : null}
       </header>
 
       <ul className="grid gap-3 lg:grid-cols-2">
-        {WORKFLOW_CYCLES.map((cycle) => (
+        {cycles.map((cycle) => (
           <li
             key={cycle.id}
             className={

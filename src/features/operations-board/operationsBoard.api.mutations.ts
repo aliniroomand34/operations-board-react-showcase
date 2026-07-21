@@ -1,6 +1,7 @@
 /**
  * Mock API mutations — in-memory state transitions for the Operations Board demo.
  */
+import { commitDemoBoardMutation } from "@/mocks/demoStore";
 import {
   beginMockApiCall,
   cloneCurrentBoard,
@@ -55,6 +56,7 @@ export async function assignBatchesToRequest(
   }
 
   board.inProgress = [request, ...board.inProgress];
+  commitDemoBoardMutation();
   return cloneCurrentBoard();
 }
 
@@ -84,6 +86,7 @@ export async function completeOperationRequest(
   }
 
   board.completed = [request, ...board.completed];
+  commitDemoBoardMutation();
   return cloneCurrentBoard();
 }
 
@@ -129,6 +132,7 @@ export async function assignBatchesToInProgressRequest(
     if (batch) batch.status = "assigned";
   }
 
+  commitDemoBoardMutation();
   return cloneCurrentBoard();
 }
 
@@ -150,5 +154,6 @@ export async function cancelQueuedRequest(
   }
 
   board.queued.splice(index, 1);
+  commitDemoBoardMutation();
   return cloneCurrentBoard();
 }

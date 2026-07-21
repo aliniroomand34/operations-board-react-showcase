@@ -25,9 +25,11 @@ We needed a single feature slice that still shows real frontend craft:
    private operations workflow surface — not adjacent private operator tooling
    or secondary demos outside this board.
 2. **Public routes only:** `/`, `/operations`, `*` under a layout without real auth.
-3. **Rename domain language** for public safety:
+3. **Rename domain language** for public safety (full glossary:
+   [PUBLIC_SURFACE.md](../PUBLIC_SURFACE.md)):
    - Private board feature → Operations Board
    - Private request / inventory / buyer terms → operation request / inventory batch / client
+   - Private allowlist → allowed catalog; provider accounts → linked accounts
    - Strip private product, messaging, and commerce slang from the showcase path
 4. **Keep architecture, shrink product scope:** board columns, assignment,
    complete flow, essential modals — drop settings, automation, and private

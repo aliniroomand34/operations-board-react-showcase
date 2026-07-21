@@ -1,5 +1,11 @@
 import { useDroppable } from "@dnd-kit/core";
 import {
+  BOARD_CHROME_READY_COUNT_CLASS,
+  BOARD_CHROME_READY_DROP_OVER_CLASS,
+  BOARD_CHROME_READY_TITLE_CLASS,
+  OPERATIONS_BOARD_COLUMN_TONE,
+} from "@/features/shared/boardChrome";
+import {
   BoardCardList,
   BoardCardListItem,
   ColumnFrame,
@@ -12,18 +18,6 @@ import {
 } from "./operations-board-cards";
 import { BOARD_COLUMN_META } from "./operationsBoard.helpers";
 import type { InventoryBatch, OperationRequest } from "./operationsBoard.types";
-
-/** Column tone gradients — local class maps (runtime-free, design tokens via CSS vars). */
-const COLUMN_TONE = {
-  queued:
-    "bg-[radial-gradient(circle_at_top,rgba(157,8,8,0.22),transparent_55%)]",
-  ready:
-    "border-dashed border-[var(--border-success)]/45 bg-[radial-gradient(circle_at_top,rgba(30,90,42,0.28),transparent_55%)]",
-  inProgress:
-    "bg-[radial-gradient(circle_at_top,rgba(255,215,0,0.14),transparent_55%)]",
-  completed:
-    "bg-[radial-gradient(circle_at_top,rgba(111,207,255,0.1),transparent_55%)]",
-} as const;
 
 export interface QueuedColumnProps {
   requests: OperationRequest[];
@@ -41,7 +35,7 @@ export function QueuedColumn({
     <ColumnFrame
       title={meta.title}
       count={requests.length}
-      toneClass={COLUMN_TONE.queued}
+      toneClass={OPERATIONS_BOARD_COLUMN_TONE.queued}
     >
       {requests.length === 0 ? (
         <p className="ops-empty" role="status">
@@ -75,16 +69,12 @@ export function ReadyBatchesColumn({ batches }: ReadyBatchesColumnProps) {
     <ColumnFrame
       title="Ready batches"
       count={batches.length}
-      toneClass={COLUMN_TONE.ready}
+      toneClass={OPERATIONS_BOARD_COLUMN_TONE.ready}
       headingId="ready-batches-column-heading"
-      titleClassName="text-[var(--fg-success)]"
-      countClassName="border-[var(--border-success)]/40 text-[var(--fg-success)]"
+      titleClassName={BOARD_CHROME_READY_TITLE_CLASS}
+      countClassName={BOARD_CHROME_READY_COUNT_CLASS}
       sectionRef={setNodeRef}
-      sectionClassName={
-        isOver
-          ? "border-[var(--border-success)] shadow-[0_0_20px_rgba(30,90,42,0.35)]"
-          : ""
-      }
+      sectionClassName={isOver ? BOARD_CHROME_READY_DROP_OVER_CLASS : ""}
     >
       {batches.length === 0 ? (
         <p className="ops-empty" role="status">
@@ -123,7 +113,7 @@ export function InProgressColumn({
     <ColumnFrame
       title={meta.title}
       count={requests.length}
-      toneClass={COLUMN_TONE.inProgress}
+      toneClass={OPERATIONS_BOARD_COLUMN_TONE.inProgress}
     >
       {requests.length === 0 ? (
         <p className="ops-empty" role="status">
@@ -162,7 +152,7 @@ export function CompletedColumn({
     <ColumnFrame
       title={meta.title}
       count={requests.length}
-      toneClass={COLUMN_TONE.completed}
+      toneClass={OPERATIONS_BOARD_COLUMN_TONE.completed}
     >
       {requests.length === 0 ? (
         <p className="ops-empty" role="status">

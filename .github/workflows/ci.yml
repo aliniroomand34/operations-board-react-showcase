@@ -39,3 +39,6 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Publishable slang gate
+        run: npm run check:slang

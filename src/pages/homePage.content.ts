@@ -73,18 +73,51 @@ export const SCALE_SIGNALS = [
   },
 ] as const;
 
+export const SHIPPED_SURFACES = [
+  {
+    title: "Overview",
+    route: "/app/overview",
+    body: "KPI cards, Recharts pie/bar panels, and summary tables wired to the shared mock store — counts move after board and pipeline actions.",
+  },
+  {
+    title: "Inventory Pipeline",
+    route: "/app/inventory",
+    body: "Allowed catalog, batch request form, column workflow, and handoff to the Operations Board.",
+  },
+  {
+    title: "Extension Acquisition Simulator",
+    route: "/app/extension-sim",
+    body: "In-app simulation of operator extension acquisition — honesty banner, paced steps from form payload.",
+  },
+  {
+    title: "Operations Board",
+    route: "/app/operations",
+    body: "Queue → assign → in progress → complete with drag/drop and keyboard assign path.",
+  },
+  {
+    title: "Finance Summary",
+    route: "/app/finance",
+    body: "Demo — synthetic finance KPIs and charts from the shared mock store. No live billing.",
+  },
+  {
+    title: "Team Activity",
+    route: "/app/team",
+    body: "Demo — synthetic org graph and activity feed. No real RBAC or member management.",
+  },
+] as const;
+
 export const IMPLEMENTATION = [
   {
-    title: "Typed React Board",
-    body: "Feature-based board with UI / Logic / helpers / types boundaries and dense operator-first controls.",
+    title: "Shared mock store",
+    body: "Single in-memory source of truth for board, pipeline, extension jobs, and overview KPIs.",
   },
   {
-    title: "Mock API Boundary",
-    body: "In-memory synthetic transitions replace private integrations so the demo stays static-deploy safe.",
+    title: "Modular feature architecture",
+    body: "UI / Logic / API / helpers split per surface — same pattern as production-shaped code.",
   },
   {
-    title: "Behavior Tests",
-    body: "RTL coverage on loading, error recovery, assign, cancel, and complete — outcomes operators care about.",
+    title: "Behavior tests under CI",
+    body: "Vitest + RTL on helpers, store mutations, route shell, and primary operator workflows.",
   },
 ] as const;
 

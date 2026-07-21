@@ -49,14 +49,14 @@ export function QueueClientCard({
           className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
           aria-hidden
         />
-        <div className="relative z-10 flex h-full flex-col items-center justify-center gap-0.5 px-1.5 py-1.5">
-          <p className="max-w-full truncate text-[11px] font-bold leading-tight text-[var(--fg)]">
+        <div className="relative z-10 flex h-full flex-col items-center justify-center gap-px px-1 py-1">
+          <p className="max-w-full truncate text-[10px] font-bold leading-tight text-[var(--fg)]">
             {request.clientLabel}
           </p>
-          <p className="text-[8px] leading-tight text-[var(--gray-800)]">
+          <p className="text-[7px] leading-tight text-[var(--gray-800)]">
             {formatRequestedAt(request.requestedAt)}
           </p>
-          <p className="rounded bg-[var(--fg)] px-1 py-px text-[8px] font-bold leading-tight text-[var(--fg-inverted)]">
+          <p className="rounded bg-[var(--fg)] px-1 py-px text-[7px] font-bold leading-tight text-[var(--fg-inverted)]">
             {formatAmount(request.amount)}
           </p>
           <span className="ops-status-badge ops-status-badge--queued ops-status-badge--compact">
@@ -102,14 +102,14 @@ export function InProgressCard({
             className="pointer-events-none absolute inset-0 m-auto h-full w-full text-white/10"
             aria-hidden
           />
-          <div className="relative z-10 flex h-full flex-col items-center justify-center gap-0.5 px-1.5 py-1.5">
-            <p className="max-w-full truncate text-[11px] font-bold leading-tight text-white">
+          <div className="relative z-10 flex h-full flex-col items-center justify-center gap-px px-1 py-1">
+            <p className="max-w-full truncate text-[10px] font-bold leading-tight text-white">
               {request.clientLabel}
             </p>
-            <p className="text-[8px] font-semibold leading-tight text-[var(--fg-subtle)]">
+            <p className="text-[7px] font-semibold leading-tight text-[var(--fg-subtle)]">
               {formatAmount(request.amount)}
             </p>
-            <p className="text-[8px] leading-tight text-[var(--gray-800)]">
+            <p className="text-[7px] leading-tight text-[var(--gray-800)]">
               {request.batchIds.length} batch(es)
             </p>
             <span className="ops-status-badge ops-status-badge--progress ops-status-badge--compact">
@@ -150,16 +150,16 @@ export function CompletedCard({
         className="ops-completed-card"
         aria-label={`Completed operation ${request.clientLabel}`}
       >
-        <p className="truncate text-[11px] font-bold text-[var(--fg-info)]">
+        <p className="truncate text-[10px] font-bold leading-tight text-[var(--fg-info)]">
           {request.clientLabel}
         </p>
-        <p className="mt-0.5 text-[10px] text-white/85">
+        <p className="mt-px text-[8px] leading-tight text-white/85">
           {formatAmount(request.amount)}
         </p>
-        <p className="mt-0.5 text-[8px] text-[var(--gray-800)]">
+        <p className="mt-px text-[7px] leading-tight text-[var(--gray-800)]">
           {request.batchIds.length} batch(es)
         </p>
-        <span className="ops-status-badge ops-status-badge--done ops-status-badge--compact mt-1">
+        <span className="ops-status-badge ops-status-badge--done ops-status-badge--compact mt-0.5">
           Done
         </span>
       </button>

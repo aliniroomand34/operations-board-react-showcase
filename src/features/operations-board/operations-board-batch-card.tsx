@@ -35,10 +35,10 @@ export function ReadyBatchCard({ batch }: ReadyBatchCardProps) {
         {...attributes}
         {...listeners}
       >
-        <p className="text-[10px] font-bold text-[var(--fg-success)]">
+        <p className="text-[9px] font-bold leading-tight text-[var(--fg-success)]">
           {batch.label}
         </p>
-        <p className="text-sm font-bold text-white">
+        <p className="text-xs font-bold leading-tight text-white">
           {formatAmount(batch.capacity)}
         </p>
         <span className="ops-status-badge ops-status-badge--ready ops-status-badge--compact self-start">

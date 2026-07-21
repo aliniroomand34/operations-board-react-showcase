@@ -42,3 +42,10 @@ actually uses — or document why a typed contract is kept without UI wiring yet
 - First-pass CTO review is less likely to flag dead deps or silent `ErrorBoundary` bugs.
 - Interview story stays honest: mock API can expose detail reads; UI may still use snapshot helpers.
 - Consolidating `useOperationsBoardLogic` onto `BoardAsyncState` remains an optional follow-up, not a claim that the hook is already a single discriminated union.
+
+## Supersession note (Phase 6)
+
+Removing unused `recharts` was correct for the board-only surface at acceptance
+time. **[ADR 006](./006-visual-parity-shared-chrome.md)** locks a later, intentional
+re-add of `recharts` for Overview + Finance mock charts only — not a reversal of
+the “no dead deps” rule.

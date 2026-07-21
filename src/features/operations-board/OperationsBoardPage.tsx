@@ -1,4 +1,5 @@
 import { DndContext, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
+import { OPERATIONS_BOARD_STRIP_CLASS } from "@/features/shared/boardChrome";
 import {
   CompletedColumn,
   InProgressColumn,
@@ -35,6 +36,7 @@ export default function OperationsBoardPage() {
     loadBoard,
     handleRetry,
     handleShowEmpty,
+    handleShowErrorPreset,
     handleResetDemo,
     handleSimulateError,
     onDragEnd,
@@ -53,11 +55,12 @@ export default function OperationsBoardPage() {
   const showBoard = !loading && !error && board && !isBoardEmpty;
 
   return (
-    <section className="flex flex-col gap-4" aria-labelledby="operations-board-heading">
+    <section className="flex flex-col gap-5" aria-labelledby="operations-board-heading">
       <OperationsBoardPageHeader
         loading={loading}
         onReload={() => void loadBoard()}
         onShowEmpty={() => void handleShowEmpty()}
+        onShowErrorPreset={() => void handleShowErrorPreset()}
         onSimulateError={() => void handleSimulateError()}
         onResetDemo={() => void handleResetDemo()}
       />
@@ -74,7 +77,7 @@ export default function OperationsBoardPage() {
         {showBoard ? (
           <DndContext sensors={sensors} onDragEnd={onDragEnd}>
             <div
-              className="grid gap-3 xl:grid-cols-4 lg:grid-cols-2"
+              className={OPERATIONS_BOARD_STRIP_CLASS}
               role="region"
               aria-label="Board columns"
             >

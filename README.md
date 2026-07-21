@@ -1,20 +1,31 @@
-﻿# Operations Board ΓÇö Public Architecture Showcase
+﻿# Ops Console Demo — Public Architecture Showcase
 
 Anonymized React case study extracted from a private SaaS operations workflow.
-Product-specific language, live APIs, and real auth were removed. What remains is
-a focused board demo with modular frontend architecture, typed contracts, and CI
-gates.
+Product-specific language, live APIs, and real auth were removed. What ships is a
+multi-route **Ops Console Demo** admin shell with modular frontend architecture, typed
+contracts, shared mock store, and CI gates (including a publishable slang check).
+
+**Claim level:** Strong Mid+ → Senior-ready learning track — not “Senior expert” or
+“Expert TypeScript.” **Glossary and boundaries:**
+[docs/PUBLIC_SURFACE.md](docs/PUBLIC_SURFACE.md).
+
+**Shipped today:** Admin shell at `/app/*` — Overview, Inventory Pipeline, Extension
+Acquisition Simulator, Operations Board, Finance Summary, Team Activity, remaining
+honest stub routes, slim Case Study — over a shared in-memory mock store. `/`
+redirects to `/app/overview`; `/operations` redirects to `/app/operations`.
 
 ## Live demo
 
-Desktop-focused static site (mock API only ΓÇö no secrets, no server).
+Desktop-focused static site (mock API only — no secrets, no server).
+
+**Open the panel:** `/app/overview` (default entry after `/`)
 
 **Live demo:** https://operations-board-react-showcase.vercel.app
 
 Source: https://github.com/aliniroomand34/operations-board-react-showcase
 
-Architecture FAQ: [docs/INTERVIEW_DEFENSE.md](docs/INTERVIEW_DEFENSE.md) ┬╖
-Demo script (~60s): [docs/RECRUITER_DEMO_SCRIPT.md](docs/RECRUITER_DEMO_SCRIPT.md)
+Architecture FAQ: [docs/INTERVIEW_DEFENSE.md](docs/INTERVIEW_DEFENSE.md) ·
+Demo script (~2 min): [docs/RECRUITER_DEMO_SCRIPT.md](docs/RECRUITER_DEMO_SCRIPT.md)
 
 ## Problem
 
@@ -23,7 +34,7 @@ domain rules) with sensitive product language and real backends. That mix is har
 to show in a public portfolio without leaking business detail.
 
 This repo answers: **can architecture ownership on a real-shaped board workflow
-be demonstrated safely ΓÇö while still explaining the larger system that board
+be demonstrated safely — while still explaining the larger system that board
 belonged to?**
 
 ## System Context
@@ -31,18 +42,19 @@ belonged to?**
 The private source system was larger than a single board. At a category level it
 included:
 
-- **Automation intake** ΓÇö bots / automated channels that brought work into the
+- **Automation intake** — bots / automated channels that brought work into the
   workflow without operators typing every request by hand
-- **Browser-based operator extensions** ΓÇö tools that reduced friction for
+- **Browser-based operator extensions** — tools that reduced friction for
   operators and connected their actions into the same workflow
-- **Backend workflow services** ΓÇö orchestration for validation, state transitions,
+- **Backend workflow services** — orchestration for validation, state transitions,
   auditability, and integration boundaries
-- **Redis-backed transient state / queue coordination** ΓÇö short-lived workflow
-  state, locks, rate limiting, or queue-like coordination in production
-- **WebSocket / realtime channel** ΓÇö live operational updates to surfaces that
-  operators watched
-- **Operations board (frontend)** ΓÇö the human-facing projection for queue, assign,
-  in-progress, and completion
+- **Redis-backed transient state / queue coordination** — short-lived workflow
+  state, locks, rate limiting, or queue-like coordination in production (**context
+  only — not live in this repo**)
+- **WebSocket / realtime channel** — live operational updates to surfaces that
+  operators watched (**context only**)
+- **Operations board (frontend)** — the human-facing projection for queue, assign,
+  in-progress, and completion (**implemented** in this demo)
 
 This repository shows only a **safe frontend projection** of that board.
 Private integrations are replaced by a mock API and synthetic transitions. The
@@ -152,27 +164,34 @@ flowchart LR
 
 ## Scope
 
-**In scope**
+**In scope (shipped now)**
 
-- Desktop-focused Operations Board demo (`/operations`)
-- Public routes only: `/`, `/operations`, `*`
-- UI / Logic / API / helpers separation
-- Drag/drop assignment plus keyboard-friendly **Assign batches** path
-- In-memory mock API + synthetic data (`client-001`, `batch-001`, ΓÇª)
+- Ops Console Demo admin shell (`/app/*`) — sidebar, top bar, demo footer strip
+- **Overview** — KPI cards + Recharts (pie/bar) + summary tables from shared mock store
+- **Inventory Pipeline** — allowed catalog, batch request form, column workflow
+- **Extension Acquisition Simulator** — paced in-app acquisition simulation
+- **Operations Board** — assign, in-progress, complete (drag/drop + keyboard path)
+- **Finance Summary** — synthetic KPIs + Recharts series from the shared mock store
+- **Team Activity** — synthetic org graph + activity feed (no real RBAC)
+- Honest **stub** routes for remaining secondary IA — “Not available in this demo version”
+- **Case Study** — slim architecture page at `/app/case-study`
+- Legacy redirects: `/` → `/app/overview`, `/operations` → `/app/operations`
+- UI / Logic / API / helpers separation per feature
+- Shared in-memory mock store + synthetic data (`client-001`, `batch-001`, …)
 - Visible loading / error / empty states with recovery actions
-- TypeScript on the public demo surface
+- TypeScript (strict) on the public demo surface
 - Vitest + RTL tests on the showcase slice
-- GitHub Actions CI + Vercel / Netlify static deploy configs
-- Short ADRs and resume-aligned wording
+- GitHub Actions CI + publishable slang gate + Vercel / Netlify static deploy configs
+- Short ADRs, anonymization glossary, and resume-aligned wording
 - Documented private workflow context (categories only)
 
 **Out of scope**
 
-- Private admin surfaces, operator tooling outside this board, and other private SaaS screens
+- Live Redis, WebSocket servers, automation bots, or real browser extensions
 - Real backends, tokens, production domains, or auth claims
-- Live Redis, WebSocket servers, automation bots, or browser extensions in this repo
 - Production-grade responsive design (desktop-first)
 - Full WCAG certification (semantic HTML + keyboard basics only)
+- Private product / game / messaging brand names in publishable paths
 
 Privacy boundary checklist: [docs/PUBLIC_SURFACE.md](docs/PUBLIC_SURFACE.md)
 
@@ -194,12 +213,14 @@ complete semantics. It is not implemented here as live infrastructure.
 What this repository actually ships:
 
 ```
-App shell ΓåÆ public routes ΓåÆ OperationsBoardPage
-  ΓåÆ useOperationsBoardLogic (orchestration)
-  ΓåÆ OperationsBoardColumns + Modals (UI)
-  ΓåÆ operationsBoard.helpers (pure domain rules)
-  ΓåÆ operationsBoard.api (mock boundary)
-  ΓåÆ mocks/operationsBoard.data (synthetic seed)
+/ → /app/overview
+AdminDemoLayout (shell)
+  ├── OverviewPage (shared store KPIs)
+  ├── InventoryPipelinePage → ExtensionAcquisitionSimPage (job query)
+  ├── OperationsBoardPage
+  ├── DemoStubPage (secondary nav)
+  └── HomePage (Case Study at /app/case-study)
+Features → use*Logic hooks → *.helpers → *.api → mocks/demoStore
 ```
 
 | Layer | Responsibility |
@@ -210,9 +231,10 @@ App shell ΓåÆ public routes ΓåÆ OperationsBoardPage
 | `operationsBoard.api` | Async boundary (delay, failure, transitions) |
 | `operationsBoard.types` | Domain contract shared across layers |
 
-Domain language is public: operation request, client, inventory batch. Drag a ready
-batch onto a queued client, confirm assignment, then complete the in-progress
-operation ΓÇö or use the keyboard assign path for the same outcome.
+Domain language is public (see glossary): operation request, client, inventory batch,
+allowed catalog, linked accounts. Drag a ready batch onto a queued client, confirm
+assignment, then complete the in-progress operation — or use the keyboard assign path
+for the same outcome.
 
 Decision records:
 
@@ -232,26 +254,25 @@ Resume bullets: [docs/RESUME_BULLETS.md](docs/RESUME_BULLETS.md)
 | WebSocket / realtime | Live operational updates to operator surfaces | Mock API delays and confirmed transitions |
 | Backend orchestration | Validation, state transitions, auditability, integration boundary | Simulated inside `operationsBoard.api` + pure helpers |
 | Automation intake | Brought work into the workflow without manual entry for every case | Synthetic queued requests in seed data |
-| Operator extensions | Reduced operator friction; connected actions into the workflow | Out of scope; board actions stand in for the human path |
-| Capacity / team scale | Γëñ30 inventory sources, ~20 operators / ~50 clients, settlement, presence | Documented on Home + README ΓÇö not live RBAC / pool UI |
-| Frontend board | Typed domain contracts, operator workflows, accessible modals, DnD + keyboard | **Implemented** ΓÇö the showcase slice |
+| Operator extensions | Reduced operator friction; connected actions into the workflow | **Extension Acquisition Simulator** — in-app mock only |
+| Capacity / team scale | ≤30 inventory sources, ~20 operators / ~50 clients, settlement, presence | Documented on Case Study + README — not live RBAC / pool UI |
+| Frontend console | Typed domain contracts, operator workflows, accessible modals, DnD + keyboard | **Implemented** — multi-route Ops Console Demo |
 
 ## Demo Walkthrough
 
-A short path a reviewer can follow in ~60 seconds. Spoken lines:
+A short path a reviewer can follow in ~2 minutes. Spoken lines:
 [docs/RECRUITER_DEMO_SCRIPT.md](docs/RECRUITER_DEMO_SCRIPT.md).
 
-1. **Home** ΓÇö system-context cards, **workflow cycle graphs**, and scale signals
-   (only the board lifecycle graph is live in the demo; the rest are context)
-2. **Queue** ΓÇö operation requests as queued work
-3. **Ready batches** ΓÇö inventory batches ready to assign
-4. **Assign** ΓÇö drag a ready batch onto a queued client, or use **Assign batches**
-5. **In progress** ΓÇö the operation moves to the in-progress column
-6. **Complete** ΓÇö record completion from the board controls
-7. **Recovery** ΓÇö demo controls for loading, error + retry, and empty states
+1. **`/app/overview`** — KPI baseline from shared mock store
+2. **Inventory Pipeline** — catalog + batch request → acquisition job
+3. **Extension Simulator** — honesty banner; paced steps from form payload
+4. **Operations Board** — assign ready batch → in progress → complete
+5. **Finance Summary or Team Activity** — synthetic charts / org graph (Demo badge)
+6. **One stub route** — honest unavailable panel (e.g. Clients)
+7. **Case Study** (optional) — architecture depth, not the first impression
+8. **Overview again** (optional) — confirm KPI numbers moved
 
-Optional: assign more capacity to an in-progress request, or cancel a queued
-request, to show secondary workflow paths.
+Recovery: demo controls on board/pipeline for empty, error + retry, and force-fail paths.
 
 ## What this proves
 
@@ -269,7 +290,7 @@ request, to show secondary workflow paths.
 
 | Choice | Why | Cost |
 | --- | --- | --- |
-| Showcase one board, not the full product | Clear reviewer signal + safer public surface | Broader private surfaces stay category-only in docs |
+| Showcase four interactive mocks + stubs, not the full product | Clear reviewer signal + safer public surface | Broader private surfaces stay category-only in docs |
 | Document bot / extensions / Redis / realtime as context | Shows the boardΓÇÖs place in a real workflow system | Reviewers must read ΓÇ£contextΓÇ¥ vs ΓÇ£implementedΓÇ¥ carefully |
 | Mock API instead of real HTTP | Zero secrets; static deploy; demoable async states | Not a live backend / realtime story |
 | TypeScript + CI on the public demo | Refactor safety on the surface reviewers browse | Incremental migration, not a greenfield TS rewrite of a full product |
@@ -293,8 +314,11 @@ See [ADR 004](docs/adr/004-testing-strategy.md) for what is and is not tested.
 
 - Synthetic ids and amounts only
 - No real client PII, private endpoints, or production credentials
-- Domain language uses public terms only (operation request, client, inventory batch)
-- Larger system pieces are described by **category** ΓÇö never by private product names
+- Domain language uses public glossary terms only (operation request, client,
+  inventory batch, allowed catalog, linked accounts)
+- Larger system pieces are described by **category** — never by private product names
+- Home workflow cycles label **`demo`** (board lifecycle) vs **`context`** (private
+  system only)
 
 ## Engineering notes
 
@@ -308,14 +332,19 @@ the author.
 - Thin real HTTP adapter behind the same API boundary (optional for a static demo)
 - Keep the live deploy aligned with `main` after merges
 
-## Stack
+## Stack (this repository)
 
-- React 19 + Vite
-- TypeScript (strict) on the public demo
-- React Router
-- Tailwind CSS
+What runs in CI and ships in the static demo — not private infrastructure.
+
+- React 19 + Vite 7
+- TypeScript (strict) on the public demo surface
+- React Router 7
+- Tailwind CSS 4 (`@tailwindcss/vite`)
 - `@dnd-kit` for board drag/drop
 - Vitest + React Testing Library
+
+Redis, WebSocket, and live HTTP APIs are **documented context only** — see
+[PUBLIC_SURFACE.md](docs/PUBLIC_SURFACE.md).
 
 ## Run locally
 
@@ -325,14 +354,15 @@ npm install
 npm run dev
 ```
 
-No `.env` or API URL is required. The Operations Board loads from
-`src/mocks/operationsBoard.data.ts` via `operationsBoard.api.ts`.
+No `.env` or API URL is required. Interactive features read and write through the
+shared mock store and feature API modules under `src/mocks/` and `src/features/*/`.
 
 ```bash
 npm run typecheck
 npm run lint
 npm run test
 npm run build
+npm run check:slang
 npm run preview
 npm run ci
 ```
@@ -356,7 +386,7 @@ Static hosting only ΓÇö the mock API runs in the browser.
    If the Git root is a monorepo parent: use the parent `netlify.toml` with `base = frontend`.
 3. Deploy. No environment variables are required.
 
-SPA routes (`/operations`, unknown paths) are rewritten to `index.html` in both configs.
+SPA routes (`/app/*`, legacy `/operations`, unknown paths) are rewritten to `index.html` in both configs.
 
 ## CI
 
@@ -370,6 +400,7 @@ GitHub Actions runs on push/PR (same gates as `npm run ci`):
 3. `npm run lint`
 4. `npm run test`
 5. `npm run build`
+6. `npm run check:slang`
 
 ## Accessibility (demo basics)
 
