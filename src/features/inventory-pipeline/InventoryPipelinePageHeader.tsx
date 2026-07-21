@@ -1,4 +1,4 @@
-import { InventoryPipelineDemoControls } from "./inventory-pipeline-demo-controls";
+import { InventoryPipelineDemoControls } from "./InventoryPipelineDemoControls";
 
 interface InventoryPipelinePageHeaderProps {
   loading: boolean;

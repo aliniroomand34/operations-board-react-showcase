@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { OperationsBoardModalShell } from "@/features/operations-board/operations-board-modal-shell";
+import { OperationsBoardModalShell } from "@/features/operations-board/OperationsBoardModalShell";
 import { getEnabledCatalogItems } from "./inventoryPipeline.helpers";
 import type {
   BatchRequestLineItem,

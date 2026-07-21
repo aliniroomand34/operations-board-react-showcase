@@ -14,10 +14,11 @@ export type {
 export { DemoPieChart } from "./DemoPieChart";
 export type { DemoPieChartProps, DemoPieSlice } from "./DemoPieChart";
 export type { DemoChartDatum } from "./demoCharts.types";
-export { DEMO_CHART_PALETTE, demoChartFill } from "./demoCharts.theme";
 export {
   DEMO_CHART_COLORS,
+  DEMO_CHART_PALETTE,
   DEMO_CHART_TICK,
   DEMO_CHART_TOOLTIP_STYLE,
   DEMO_SERIES_COLORS,
-} from "./chartTheme";
+  demoChartFill,
+} from "./demoCharts.theme";

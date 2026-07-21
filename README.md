@@ -197,6 +197,9 @@ Privacy boundary checklist: [docs/PUBLIC_SURFACE.md](docs/PUBLIC_SURFACE.md)
 
 ## Architecture
 
+File and folder naming (PascalCase UI, `*.helpers` / `*.api` suffixes, no
+`ui/`/`logic/` folders): [docs/FILE_CONVENTIONS.md](docs/FILE_CONVENTIONS.md).
+
 ### Private source system context
 
 In the private product, the board was one surface among several. Automation intake

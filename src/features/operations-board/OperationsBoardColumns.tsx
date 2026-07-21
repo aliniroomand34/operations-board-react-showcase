@@ -9,13 +9,13 @@ import {
   BoardCardList,
   BoardCardListItem,
   ColumnFrame,
-} from "./operations-board-column-frame";
-import { ReadyBatchCard } from "./operations-board-batch-card";
+} from "./OperationsBoardColumnFrame";
+import { ReadyBatchCard } from "./OperationsBoardBatchCard";
 import {
   CompletedCard,
   InProgressCard,
   QueueClientCard,
-} from "./operations-board-cards";
+} from "./OperationsBoardCards";
 import { BOARD_COLUMN_META } from "./operationsBoard.helpers";
 import type { InventoryBatch, OperationRequest } from "./operationsBoard.types";
 

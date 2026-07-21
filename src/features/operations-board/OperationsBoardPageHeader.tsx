@@ -1,4 +1,4 @@
-import { OperationsBoardDemoControls } from "./operations-board-demo-controls";
+import { OperationsBoardDemoControls } from "./OperationsBoardDemoControls";
 
 interface OperationsBoardPageHeaderProps {
   loading: boolean;

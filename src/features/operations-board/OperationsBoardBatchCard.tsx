@@ -3,7 +3,7 @@ import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 import { formatAmount } from "./operationsBoard.helpers";
 import type { InventoryBatch } from "./operationsBoard.types";
-import { CardShell } from "./operations-board-card-shell";
+import { CardShell } from "./OperationsBoardCardShell";
 
 interface ReadyBatchCardProps {
   batch: InventoryBatch;

@@ -10,7 +10,7 @@ import {
   DEMO_CHART_COLORS,
   DEMO_CHART_TICK,
   DEMO_CHART_TOOLTIP_STYLE,
-} from "./chartTheme";
+} from "./demoCharts.theme";
 
 export interface DemoAreaPoint {
   label: string;

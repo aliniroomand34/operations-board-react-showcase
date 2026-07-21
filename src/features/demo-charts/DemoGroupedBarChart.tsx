@@ -10,7 +10,7 @@ import {
   DEMO_CHART_TICK,
   DEMO_CHART_TOOLTIP_STYLE,
   DEMO_SERIES_COLORS,
-} from "./chartTheme";
+} from "./demoCharts.theme";
 
 export interface DemoBarSeries {
   key: string;

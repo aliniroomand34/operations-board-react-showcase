@@ -3,7 +3,7 @@ import { FaUserCircle } from "react-icons/fa";
 import {
   AssigningOverlay,
   CardShell,
-} from "./operations-board-card-shell";
+} from "./OperationsBoardCardShell";
 import {
   buildProgressRingBackground,
   formatAmount,

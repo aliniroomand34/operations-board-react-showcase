@@ -1,8 +1,8 @@
-import { InventoryPipelineBatchFormModal } from "./inventory-pipeline-batch-form-modal";
-import { InventoryPipelineCatalogPanel } from "./inventory-pipeline-catalog-panel";
+import { InventoryPipelineBatchFormModal } from "./InventoryPipelineBatchFormModal";
+import { InventoryPipelineCatalogPanel } from "./InventoryPipelineCatalogPanel";
 import { InventoryPipelineColumns } from "./InventoryPipelineColumns";
-import { InventoryPipelinePageHeader } from "./inventory-pipeline-page-header";
-import { InventoryPipelineStatusPanel } from "./inventory-pipeline-status-panel";
+import { InventoryPipelinePageHeader } from "./InventoryPipelinePageHeader";
+import { InventoryPipelineStatusPanel } from "./InventoryPipelineStatusPanel";
 import { useInventoryPipelineLogic } from "./useInventoryPipelineLogic";
 
 /**

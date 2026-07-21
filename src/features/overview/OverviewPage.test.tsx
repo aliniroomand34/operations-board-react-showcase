@@ -4,7 +4,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import OverviewPage from "@/pages/OverviewPage";
+import OverviewPage from "./OverviewPage";
 import { advancePipelineBatch } from "@/features/inventory-pipeline/inventoryPipeline.api";
 import {
   resetDemoStore,

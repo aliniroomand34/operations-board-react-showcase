@@ -3,7 +3,7 @@ import { ChartLegend } from "@/features/demo-charts/ChartLegend";
 import {
   DEMO_CHART_TOOLTIP_STYLE,
   DEMO_SERIES_COLORS,
-} from "@/features/demo-charts/chartTheme";
+} from "@/features/demo-charts/demoCharts.theme";
 
 export interface DemoPieSlice {
   name: string;

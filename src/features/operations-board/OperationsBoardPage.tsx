@@ -11,8 +11,8 @@ import {
   DragAssignConfirmModal,
   RequestDetailsModal,
 } from "./OperationsBoardModals";
-import { OperationsBoardPageHeader } from "./operations-board-page-header";
-import { OperationsBoardStatusPanel } from "./operations-board-status-panel";
+import { OperationsBoardPageHeader } from "./OperationsBoardPageHeader";
+import { OperationsBoardStatusPanel } from "./OperationsBoardStatusPanel";
 import { useOperationsBoardLogic } from "./useOperationsBoardLogic";
 
 /**

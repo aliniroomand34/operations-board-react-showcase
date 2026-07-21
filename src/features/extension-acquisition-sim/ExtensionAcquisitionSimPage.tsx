@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { ADMIN_DEMO_BASE } from "@/layouts/adminDemoNav";
-import { ExtensionAcquisitionSimControls } from "./extension-acquisition-sim-controls";
-import { ExtensionAcquisitionSimHonestyBanner } from "./extension-acquisition-sim-honesty-banner";
-import { ExtensionAcquisitionSimJobSummary } from "./extension-acquisition-sim-job-summary";
-import { ExtensionAcquisitionSimTimeline } from "./extension-acquisition-sim-timeline";
+import { ExtensionAcquisitionSimControls } from "./ExtensionAcquisitionSimControls";
+import { ExtensionAcquisitionSimHonestyBanner } from "./ExtensionAcquisitionSimHonestyBanner";
+import { ExtensionAcquisitionSimJobSummary } from "./ExtensionAcquisitionSimJobSummary";
+import { ExtensionAcquisitionSimTimeline } from "./ExtensionAcquisitionSimTimeline";
 import { useExtensionAcquisitionSimLogic } from "./useExtensionAcquisitionSimLogic";
 
 /**

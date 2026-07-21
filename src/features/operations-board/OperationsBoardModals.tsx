@@ -5,12 +5,12 @@
 export {
   DragAssignConfirmModal,
   type DragAssignConfirmModalProps,
-} from "./drag-assign-confirm-modal";
+} from "./DragAssignConfirmModal";
 export {
   RequestDetailsModal,
   type RequestDetailsModalProps,
-} from "./request-details-modal";
+} from "./RequestDetailsModal";
 export {
   AssignBatchesModal,
   type AssignBatchesModalProps,
-} from "./assign-batches-modal";
+} from "./AssignBatchesModal";

@@ -1,6 +1,6 @@
 import { formatAmount } from "./operationsBoard.helpers";
 import type { InventoryBatch, OperationRequest } from "./operationsBoard.types";
-import { OperationsBoardModalShell } from "./operations-board-modal-shell";
+import { OperationsBoardModalShell } from "./OperationsBoardModalShell";
 
 export interface DragAssignConfirmModalProps {
   open: boolean;

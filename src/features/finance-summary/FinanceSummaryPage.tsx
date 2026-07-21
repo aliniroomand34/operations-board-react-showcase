@@ -4,7 +4,7 @@ import {
   DemoGroupedBarChart,
   DemoPieChart,
 } from "@/features/demo-charts";
-import { DEMO_CHART_COLORS } from "@/features/demo-charts/chartTheme";
+import { DEMO_CHART_COLORS } from "@/features/demo-charts/demoCharts.theme";
 import { useDemoFinance } from "./useDemoFinance";
 
 function formatAmount(value: number): string {

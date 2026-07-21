@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { DemoStoreControls } from "@/components/DemoStoreControls";
-import { OverviewChartsPanel } from "@/features/overview/OverviewChartsPanel";
-import { OverviewSummaryTables } from "@/features/overview/OverviewSummaryTables";
-import { useDemoOverviewMetrics } from "@/hooks/useDemoOverviewMetrics";
 import { useDemoStoreControls } from "@/hooks/useDemoStoreControls";
+import { OverviewChartsPanel } from "./OverviewChartsPanel";
+import { OverviewSummaryTables } from "./OverviewSummaryTables";
+import { useDemoOverviewMetrics } from "./useDemoOverviewMetrics";
 import { ADMIN_DEMO_BASE } from "@/layouts/adminDemoNav";
 
 /**

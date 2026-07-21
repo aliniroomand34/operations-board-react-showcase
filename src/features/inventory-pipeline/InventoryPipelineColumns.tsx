@@ -2,7 +2,7 @@ import {
   BoardCardList,
   BoardCardListItem,
   ColumnFrame,
-} from "@/features/operations-board/operations-board-column-frame";
+} from "@/features/operations-board/OperationsBoardColumnFrame";
 import {
   BOARD_CHROME_READY_COUNT_CLASS,
   BOARD_CHROME_READY_TITLE_CLASS,
@@ -10,7 +10,7 @@ import {
   PIPELINE_COLUMN_SHELL_CLASS,
   PIPELINE_COLUMN_TONE,
 } from "@/features/shared/boardChrome";
-import { InventoryPipelineBatchCard } from "./inventory-pipeline-batch-card";
+import { InventoryPipelineBatchCard } from "./InventoryPipelineBatchCard";
 import { PIPELINE_COLUMN_META, PIPELINE_COLUMNS } from "./inventoryPipeline.helpers";
 import type { PipelineBatch, PipelineColumn } from "./inventoryPipeline.types";
 

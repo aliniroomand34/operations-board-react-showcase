@@ -12,7 +12,7 @@ import {
   DEMO_CHART_TICK,
   DEMO_CHART_TOOLTIP_STYLE,
   DEMO_SERIES_COLORS,
-} from "@/features/demo-charts/chartTheme";
+} from "@/features/demo-charts/demoCharts.theme";
 import type { DemoChartDatum } from "@/features/demo-charts/demoCharts.types";
 
 export interface DemoBarChartProps {
